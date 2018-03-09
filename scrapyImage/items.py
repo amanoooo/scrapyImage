@@ -9,7 +9,7 @@ import scrapy
 
 
 class ScrapyImageItem(scrapy.Item):
-    # define the fields for your item here like:
+    #   type image = Array[string]   len(image) === 0
     image = scrapy.Field()
     title = scrapy.Field()
     pass

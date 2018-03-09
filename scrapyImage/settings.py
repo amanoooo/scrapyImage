@@ -66,7 +66,8 @@ DOWNLOAD_DELAY = 3
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'scrapyImage.pipelines.DuplicatesPipeline': 1,
-   'scrapyImage.pipelines.DownImage': 100
+   'scrapyImage.pipelines.DownImage': 100,
+   'scrapyImage.pipelines.MySQLPipeline': 300
 }
 
 # Enable and configure the AutoThrottle extension (disabled by default)
@@ -90,5 +91,10 @@ HTTPCACHE_DIR = 'httpcache'
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
+#  1 风景 2 宠物 3 美女 4 时尚 5 科技
+IMAGES_STORE = '../../dbImage/1/'
 
-IMAGES_STORE = 'images'
+MYSQL_HOST = 'localhost'
+MYSQL_DBNAME = 'yellow_page'
+MYSQL_USER = 'root'
+MYSQL_PASSWD = 'root'
