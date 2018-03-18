@@ -100,20 +100,22 @@ class MySQLPipeline(object):
 
     @staticmethod
     def _conditional_insert(tb, item):
-        ti = round(time.time() * 1000)
+        cTime = round(time.time() * 1000)
         if (item['image'][0].startswith('http') ):
             print 'error item ', item
         else:
             print 'right item ', item
-            img0 = Image.open(IMAGES_STORE + item['image'][0])
+            img0 = Image.open(item['image'][0])
             title0 = item['title']
             size0 = img0.size
             print 'size0 is ', size0
+            dbPath = item['image'][0].replace('../../dbImage/','')
             tb.execute('insert into image_list (id, head_image, height, title, type, upload_dt, width) '
                        'values (%s, %s, %s, %s, %s, %s, %s)',
-                       (ti, '3/' + item['image'][0], size0[1], title0, '3', ti, size0[0]))
+                       (cTime, dbPath, size0[1], title0, '3', cTime, size0[0]))
             for a in item["image"]:
-                img = Image.open(IMAGES_STORE + a)
+                dbPath = a.replace('../../dbImage/','')
+                img = Image.open(a)
                 size = img.size
                 tb.execute('insert into image_detail (width, height, image_list_id, url) values (%s, %s, %s, %s)',
-                           (size[0], size[1], ti, '3/' + a))
+                           (size[0], size[1], cTime, dbPath))
