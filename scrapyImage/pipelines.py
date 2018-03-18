@@ -112,7 +112,7 @@ class MySQLPipeline(object):
             dbPath = item['image'][0].replace('../../dbImage/','')
             tb.execute('insert into image_list (id, head_image, height, title, type, upload_dt, width) '
                        'values (%s, %s, %s, %s, %s, %s, %s)',
-                       (cTime, dbPath, size0[1], title0, '3', cTime, size0[0]))
+                       (cTime, dbPath, size0[1], title0, '1', cTime, size0[0]))
             for a in item["image"]:
                 dbPath = a.replace('../../dbImage/','')
                 img = Image.open(a)
